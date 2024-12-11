@@ -19,4 +19,4 @@ CREATE TABLE IF NOT EXISTS `REVIEW`
     ) ENGINE = InnoDB CHARSET = utf8 COMMENT '리뷰 테이블';
 
 CREATE INDEX idx_review_product_createdAt
-    ON REVIEW(productId, createdAt DESC) COMMENT = '상품별 최신 리뷰 조회를 위한 복합 인덱스';
+    ON REVIEW(productId, createdAt DESC) COMMENT '상품별 최신 리뷰 조회를 위한 복합 인덱스';
