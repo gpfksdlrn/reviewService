@@ -23,7 +23,6 @@ public class Product {
 
     public void addReview(int score) {
         this.reviewCount++;
-        // 새로운 평균 = (기존 총점 + 새로운 점수) / 새로운 리뷰 수
-        this.score = (this.score + (this.reviewCount - 1) + score) / this.reviewCount;
+        this.score = ((this.score * (this.reviewCount - 1)) + score) / this.reviewCount;
     }
 }
