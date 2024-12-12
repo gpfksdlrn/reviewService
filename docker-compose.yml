@@ -7,7 +7,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: reviews
+      MYSQL_DATABASE: PRODUCT_REVIEW
     volumes:
       - db_data:/var/lib/mysql
 volumes:
