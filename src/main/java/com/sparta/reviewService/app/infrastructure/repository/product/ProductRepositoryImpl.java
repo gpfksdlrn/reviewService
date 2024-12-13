@@ -14,7 +14,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Product findById(Long productId) {
         return jpaRepository.findById(productId).orElseThrow(()
-                -> new NullPointerException("Product with id " + productId + " not found"));
+                -> new NullPointerException("상품이 존재하지 않습니다."));
     }
 
     @Override
