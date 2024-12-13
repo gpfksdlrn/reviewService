@@ -28,12 +28,12 @@ public class ReviewController {
     }
 
     @PostMapping("/{productId}/reviews")
-    public ResponseEntity<Void> createReview(
+    public String createReview(
             @PathVariable Long productId,
             @RequestBody ReviewReq reviewReq,
             @RequestPart(value = "imageFile", required = false) MultipartFile imageFile
     ) {
         reviewService.createReview(productId, reviewReq.userId(), reviewReq.score(), reviewReq.content(), imageFile);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return "리뷰등록 완료";
     }
 }
