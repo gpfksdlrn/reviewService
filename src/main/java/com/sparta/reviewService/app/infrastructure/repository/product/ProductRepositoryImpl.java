@@ -5,7 +5,6 @@ import com.sparta.reviewService.app.domain.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -13,12 +12,18 @@ public class ProductRepositoryImpl implements ProductRepository {
     private final ProductJpaRepository jpaRepository;
 
     @Override
-    public Optional<Product> findById(Long productId) {
-        return jpaRepository.findById(productId);
+    public Product findById(Long productId) {
+        return jpaRepository.findById(productId).orElseThrow(()
+                -> new NullPointerException("Product with id " + productId + " not found"));
     }
 
     @Override
     public void save(Product product) {
         jpaRepository.save(product);
+    }
+
+    @Override
+    public Product findByIdWithPessimisticLock(Long productId) {
+        return jpaRepository.findByIdWithPessimisticLock(productId);
     }
 }
