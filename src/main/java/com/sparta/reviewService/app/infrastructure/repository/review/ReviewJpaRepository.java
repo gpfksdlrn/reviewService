@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface ReviewJpaRepository extends JpaRepository<Review, Long> {
     @Query(value = """
             SELECT r FROM Review r
@@ -39,4 +41,6 @@ public interface ReviewJpaRepository extends JpaRepository<Review, Long> {
             @Param("productId") Long productId,
             @Param("userId") Long userId
     );
+
+    Optional<Review> findByProductIdAndUserId(Long productId, Long userId);
 }

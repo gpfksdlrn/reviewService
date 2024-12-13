@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Repository;
 
+import java.util.NoSuchElementException;
+
 @Repository
 @RequiredArgsConstructor
 public class ReviewRepositoryImpl implements ReviewRepository {
@@ -30,5 +32,11 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     @Override
     public boolean existsByProductIdAndUserIdWithPessimisticLock(Long productId, Long userId) {
         return jpaRepository.existsByProductIdAndUserIdWithPessimisticLock(productId, userId);
+    }
+
+    @Override
+    public Review findByProductIdAndUserId(Long productId, Long userId) {
+        return jpaRepository.findByProductIdAndUserId(productId, userId).orElseThrow(() ->
+                new NoSuchElementException("Product with id " + productId + " does not exist"));
     }
 }

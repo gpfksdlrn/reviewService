@@ -9,4 +9,5 @@ public interface ReviewRepository {
     Slice<Review> findFirstPageByProductId(Long productId, PageRequest of);
     Slice<Review> findByProductIdAndCursor(Long productId, Long cursor, PageRequest of);
     boolean existsByProductIdAndUserIdWithPessimisticLock(Long productId, Long userId);
+    Review findByProductIdAndUserId(Long productId, Long userId);
 }
