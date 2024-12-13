@@ -5,6 +5,7 @@ import com.sparta.reviewService.app.interfaces.req.ReviewReq;
 import com.sparta.reviewService.app.interfaces.res.ReviewRes;
 import com.sparta.reviewService.app.domain.review.ReviewService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +31,7 @@ public class ReviewController {
     @PostMapping("/{productId}/reviews")
     public String createReview(
             @PathVariable Long productId,
-            @RequestBody ReviewReq reviewReq,
+            @Valid @RequestBody ReviewReq reviewReq,
             @RequestPart(value = "imageFile", required = false) MultipartFile imageFile
     ) {
         reviewService.createReview(productId, reviewReq.userId(), reviewReq.score(), reviewReq.content(), imageFile);
