@@ -1,5 +1,8 @@
 package com.sparta.reviewService.app.domain.review;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+
 // 리뷰 데이터를 관리하는 인터페이스
 public interface ReviewRepository {
     void save(Review review);
